@@ -7,7 +7,7 @@ import Search from './Dashboard/Search';
 import Weather from './Dashboard/Weather';
 import Settings from './Dashboard/Settings';
 
-export default class Main extends Component {
+export class Main extends Component {
 
 	constructor(props) {
 		super(props)
@@ -42,3 +42,7 @@ export default class Main extends Component {
 	}
 
 }
+
+export default GoogleApiWrapper({
+	apiKey: 'AIzaSyBbtQVWV6W90rXN8wIHpj0FjF1uqD0ov00'
+})(Main)
