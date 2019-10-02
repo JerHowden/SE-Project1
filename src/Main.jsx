@@ -12,18 +12,23 @@ export class Main extends Component {
 	constructor(props) {
 		super(props)
 
+		this.initMap = this.initMap.bind(this)
+
 		this.state = {
 			apiKey: 'AIzaSyBbtQVWV6W90rXN8wIHpj0FjF1uqD0ov00',
+			pos: {
+				lat: 33.576698,
+				lng: -101.855072
+			},
 		}
+
 	}
 
-	let map, infoWindow;
-	function initMap() {
-		map = new google.maps.Map(document.getElementById('map'), {
-			center: { lat: -34.397, lng: 150.644 },
-			zoom: 6
-		});
-		infoWindow = new google.maps.InfoWindow;
+	componentDidMount() {
+		this.initMap()
+	}
+
+	initMap() {
 
 		// Try HTML5 geolocation.
 		if (navigator.geolocation) {
@@ -33,49 +38,37 @@ export class Main extends Component {
 					lng: position.coords.longitude
 				};
 
-				infoWindow.setPosition(pos);
-				infoWindow.setContent('Location found.');
-				infoWindow.open(map);
-				map.setCenter(pos);
-			}, function () {
-				handleLocationError(true, infoWindow, map.getCenter());
-			});
+				this.setState({ pos }, () => console.log(this.state))
+			}.bind(this))
 		} else {
-			// Browser doesn't support Geolocation
-			handleLocationError(false, infoWindow, map.getCenter());
+			console.log("error");
 		}
 	}
-
-	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-		infoWindow.setPosition(pos);
-		infoWindow.setContent(browserHasGeolocation ?
-			'Error: The Geolocation service failed.' :
-			'Error: Your browser doesn\'t support geolocation.');
-		infoWindow.open(map);
-	}
-
-
 
 	render() {
 		return(
 			<div>
-				<Map 
-					google={this.props.google} 
-					zoom={14}
-					initialCenter={{
-						lat: 33.5779,
-						lng: -101.8552
-					}}
-				>
-					<Marker onClick={this.onMarkerClick}
-						name={'Current location'} />
-
-				</Map>
 				<Location/>
 				<Weather/>
 				<Settings/>
 				<Search/>
 				<Date/>
+				<Map 
+					google={this.props.google} 
+					zoom={14}
+					initialCenter={this.state.pos}
+					center={this.state.pos}
+				>
+					<Marker onClick={this.onMarkerClick}
+						name={'Current location'} />
+					<InfoWindow
+						position={this.state.pos}
+					>
+						<div>
+							Info Window
+						</div>
+					</InfoWindow>
+				</Map>
 			</div>
 		)
 	}
