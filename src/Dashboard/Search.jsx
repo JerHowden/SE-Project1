@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Map,InfoWindow,Marker,GoogleApiWrapper} from 'google-maps-react';
+import './Search.css';
 
 export class Search extends Component {
 
@@ -59,8 +60,7 @@ export class Search extends Component {
         markers = [];
 
         // For each place, get the icon, name and location.
-        var bounds = new this.props.google.maps.LatLngBounds();
-        
+        var bounds = new this.props.google.maps.LatLngBounds(); //Fuck this line
         places.forEach(place => {
           if (!place.geometry) {
             console.log("Returned place contains no geometry");

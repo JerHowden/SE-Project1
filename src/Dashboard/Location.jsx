@@ -9,6 +9,7 @@ export default class Location extends Component {
 
         }
     }
+    
 
     render() {
         return (
