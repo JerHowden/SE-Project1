@@ -34,12 +34,14 @@ export class Main extends Component {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function (position) {
 				let pos = {
-					lat: position.coords.latitude,
+					lat: position.coords.latitude, 
 					lng: position.coords.longitude
 				};
-
+								
 				this.setState({ pos }, () => console.log(this.state))
 			}.bind(this))
+
+
 		} else {
 			console.log("error");
 		}
@@ -48,19 +50,22 @@ export class Main extends Component {
 	render() {
 		return(
 			<div>
-				<Location/>
+				{/* <  Location/>
 				<Weather/>
 				<Settings/>
-				<Search/>
-				<Date/>
+				<Date/> */}
+				<Search lat={this.state.pos[0]} lng={this.state.pos[1]}/>
 				<Map 
 					google={this.props.google} 
 					zoom={14}
+					onClick={this.onMapClicked}
 					initialCenter={this.state.pos}
 					center={this.state.pos}
 				>
 					<Marker onClick={this.onMarkerClick}
-						name={'Current location'} />
+						name={'Your Current location'} 
+						position={{lat: this.state.pos.lat, lng: this.state.pos.lng}}
+						/>
 					<InfoWindow
 						position={this.state.pos}
 					>
