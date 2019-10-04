@@ -54,7 +54,11 @@ export class Main extends Component {
 				<Weather/>
 				<Settings/>
 				<Date/> */}
-				<Search lat={this.state.pos[0]} lng={this.state.pos[1]}/>
+				<Search
+						lat={this.state.pos[0]} 
+						lng={this.state.pos[1]}
+						apiKey={this.state.apiKey}
+				></Search>
 				<Map 
 					google={this.props.google} 
 					zoom={14}
@@ -64,7 +68,8 @@ export class Main extends Component {
 				>
 					<Marker onClick={this.onMarkerClick}
 						name={'Your Current location'} 
-						position={{lat: this.state.pos.lat, lng: this.state.pos.lng}}
+						// position={{lat: this.state.pos[0], lng: this.state.pos[1]}}
+						position={this.state.pos}
 						/>
 					<InfoWindow
 						position={this.state.pos}
