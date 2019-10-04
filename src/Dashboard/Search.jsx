@@ -60,7 +60,8 @@ export class Search extends Component {
 
         // For each place, get the icon, name and location.
         var bounds = new this.props.google.maps.LatLngBounds();
-        places.forEach(function(place)  {
+        
+        places.forEach(place => {
           if (!place.geometry) {
             console.log("Returned place contains no geometry");
             return;
@@ -95,10 +96,10 @@ export class Search extends Component {
   render() {
 
       return ( 
-      <fragment>
+      <React.Fragment>
           <input id='pac-input' class='controls' type='text' placeholder='Search Box'></input>
           <div id='map'></div>	
-      </fragment>
+      </React.Fragment>
       )
 
   }
