@@ -59,11 +59,11 @@ export class Main extends Component {
 				<Settings/>
 				<Date/> */}
 				<Search
-						lat={this.state.pos[0]} 
-						lng={this.state.pos[1]}
-						apiKey={this.state.apiKey}
-						changeLocation={this.changeLocation}
-				></Search>
+					lat={this.state.pos[0]} 
+					lng={this.state.pos[1]}
+					apiKey={this.state.apiKey}
+					changeLocation={this.changeLocation}
+				/>
 				<Map 
 					google={this.props.google} 
 					zoom={14}

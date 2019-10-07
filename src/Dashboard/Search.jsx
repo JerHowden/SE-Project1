@@ -96,10 +96,25 @@ export class Search extends Component {
   render() {
 
       return ( 
-      <React.Fragment>
-          <input id='pac-input' class='controls' type='text' placeholder='Search Box'></input>
-          <div id='map'></div>	
-      </React.Fragment>
+        <div>
+            <input 
+				id='pac-input' 
+				class='controls' 
+				type='text' 
+				placeholder='Find a Location' 
+				style={{
+					position: 'absolute',
+					left: 0,
+					right: 0,
+					margin: '0 auto',
+					top: '30px',
+					zIndex: 1000,
+					width: '50%',
+					height: 40
+				}}
+			/>
+            <div id='map'/>	
+        </div>
       )
 
   }
