@@ -90,7 +90,7 @@ export class Search extends Component {
           }
         });
         map.fitBounds(bounds);
-      });
+      }.bind(this));
     }
 
   render() {
@@ -99,7 +99,7 @@ export class Search extends Component {
         <div>
             <input 
 				id='pac-input' 
-				class='controls' 
+				className='controls' 
 				type='text' 
 				placeholder='Find a Location' 
 				style={{
