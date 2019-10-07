@@ -47,6 +47,10 @@ export class Main extends Component {
 		}
 	}
 
+	changeLocation(lat, lng) {
+		this.setState({ position: { lat, lng }})
+	}
+
 	render() {
 		return(
 			<div>
@@ -58,6 +62,7 @@ export class Main extends Component {
 						lat={this.state.pos[0]} 
 						lng={this.state.pos[1]}
 						apiKey={this.state.apiKey}
+						changeLocation={this.changeLocation}
 				></Search>
 				<Map 
 					google={this.props.google} 
