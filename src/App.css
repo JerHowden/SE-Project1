@@ -1,23 +1,15 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.gmnoprint {
+	display: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.gm-control-active.gm-fullscreen-control {
+	display: none;
 }
 
-.App-link {
-  color: #09d3ac;
+a[href*="google.com"] {
+	display: none !important;
 }
-

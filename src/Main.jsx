@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
-import Date from './Dashboard/Date';
+import Today from './Dashboard/Today';
 import Location from './Dashboard/Location';
 import Search from './Dashboard/Search';
 import Weather from './Dashboard/Weather';
@@ -40,8 +40,6 @@ export class Main extends Component {
 								
 				this.setState({ pos }, () => console.log(this.state))
 			}.bind(this))
-
-
 		} else {
 			console.log("error");
 		}
@@ -56,8 +54,8 @@ export class Main extends Component {
 			<div>
 				{/* <  Location/>
 				<Weather/>
-				<Settings/>
-				<Date/> */}
+				<Settings/>*/}
+				<Today/>
 				<Search
 					lat={this.state.pos[0]} 
 					lng={this.state.pos[1]}
@@ -72,10 +70,9 @@ export class Main extends Component {
 					center={this.state.pos}
 				>
 					<Marker onClick={this.onMarkerClick}
-						name={'Your Current location'} 
-						// position={{lat: this.state.pos[0], lng: this.state.pos[1]}}
+						name={'Your Current location'}
 						position={this.state.pos}
-						/>
+					/>
 					<InfoWindow
 						position={this.state.pos}
 					>
