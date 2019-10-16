@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import ReactMapGL from 'react-map-gl';
 
 import Today from './Dashboard/Today';
 import Location from './Dashboard/Location';
@@ -7,7 +7,7 @@ import Search from './Dashboard/Search';
 import Weather from './Dashboard/Weather';
 import Settings from './Dashboard/Settings';
 
-export class Main extends Component {
+export default class Main extends Component {
 
 	constructor(props) {
 		super(props)
@@ -16,10 +16,12 @@ export class Main extends Component {
 
 		this.state = {
 			apiKey: 'AIzaSyBbtQVWV6W90rXN8wIHpj0FjF1uqD0ov00',
-			pos: {
-				lat: 33.576698,
-				lng: -101.855072
-			},
+			
+			width: window.innerWidth,
+			height: window.innerHeight,
+			latitude: 33.576698,
+			longitude: -101.855072,
+			zoom: 11
 		}
 
 	}
@@ -32,21 +34,19 @@ export class Main extends Component {
 
 		// Try HTML5 geolocation.
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(function (position) {
-				let pos = {
-					lat: position.coords.latitude, 
-					lng: position.coords.longitude
-				};
-								
-				this.setState({ pos }, () => console.log(this.state))
+			navigator.geolocation.getCurrentPosition(function (position) {								
+				this.setState({ 
+					latitude: position.coords.latitude, 
+					longitude: position.coords.longitude 
+				}, () => console.log(this.state))
 			}.bind(this))
 		} else {
 			console.log("error");
 		}
 	}
 
-	changeLocation(lat, lng) {
-		this.setState({ position: { lat, lng }})
+	changeLocation(latitude, longitude) {
+		this.setState({ latitude, longitude })
 	}
 
 	render() {
@@ -57,36 +57,27 @@ export class Main extends Component {
 				<Settings/>*/}
 				<Today/>
 				<Search
-					lat={this.state.pos[0]} 
-					lng={this.state.pos[1]}
-					apiKey={this.state.apiKey}
+					latitude={this.state.latitude} 
+					long={this.state.longitude}
 					changeLocation={this.changeLocation}
 				/>
-				<Map 
-					google={this.props.google} 
-					zoom={14}
-					onClick={this.onMapClicked}
-					initialCenter={this.state.pos}
-					center={this.state.pos}
-				>
-					<Marker onClick={this.onMarkerClick}
-						name={'Your Current location'}
-						position={this.state.pos}
-					/>
-					<InfoWindow
-						position={this.state.pos}
-					>
-						<div>
-							Info Window
-						</div>
-					</InfoWindow>
-				</Map>
+				<ReactMapGL
+					mapboxApiAccessToken={'pk.eyJ1IjoiamVyZW1pYWhob3dkZW4iLCJhIjoiY2sxdG02dHA3MDg0ajNicWZzcDlscGhjdyJ9.j2t6Mr4EpeTpm-4Uz7kszg'}
+
+					width={this.state.width}
+					height={this.state.height}
+					latitude={this.state.latitude}
+					longitude={this.state.longitude}
+					zoom={this.state.zoom}
+					onViewportChange={(viewport) => {
+						const { width, height, latitude, longitude, zoom } = viewport;
+						this.setState({
+							width, height, latitude, longitude, zoom
+						})
+					}}
+				/>
 			</div>
 		)
 	}
 
 }
-
-export default GoogleApiWrapper({
-	apiKey: 'AIzaSyBbtQVWV6W90rXN8wIHpj0FjF1uqD0ov00'
-})(Main)
