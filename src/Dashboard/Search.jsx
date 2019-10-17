@@ -14,8 +14,25 @@ export class Search extends Component {
 		}
 	}
 
+	componentDidMount() {
+		console.log(this.props.google)
+	}
+
 	search(e) {
-		this.setState({ search: e.target.value })
+		this.setState({ search: e.target.value }, () => {
+
+			let request = {
+				query: this.state.search,
+				fields: ['formatted_address', 'geometry', 'icon', 'name', 'permanently_closed', 'photos', 'place_id', 'plus_code', 'types']
+			}
+			let service = this.props.google.maps.places.PlacesService(document.createElement('div'))
+			console.log('service:', service)
+			service.findPlaceFromQuery(request, function(results, status) {
+				if (status === this.props.google.maps.places.PlacesServiceStatus.OK) {
+					console.log("Results:", results)
+				}
+			})
+		})
 	}
 
 	render() {
@@ -27,6 +44,7 @@ export class Search extends Component {
 					type='text' 
 					placeholder='Find a Location'
 					onChange={this.search}
+					value={this.state.search}
 				/>
 			</div>
 		)

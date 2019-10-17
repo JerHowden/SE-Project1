@@ -13,3 +13,8 @@
 a[href*="google.com"] {
 	display: none !important;
 }
+
+.mapboxgl-control-container {
+	display: none;
+    pointer-events: none;
+}

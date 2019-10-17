@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, {Marker} from 'react-map-gl';
 
 import Today from './Dashboard/Today';
 import Location from './Dashboard/Location';
@@ -13,6 +13,8 @@ export default class Main extends Component {
 		super(props)
 
 		this.initMap = this.initMap.bind(this)
+		this.changeLocation = this.changeLocation.bind(this)
+		this.setMarkerLocations = this.setMarkerLocations.bind(this)
 
 		this.state = {
 			apiKey: 'AIzaSyBbtQVWV6W90rXN8wIHpj0FjF1uqD0ov00',
@@ -21,7 +23,9 @@ export default class Main extends Component {
 			height: window.innerHeight,
 			latitude: 33.576698,
 			longitude: -101.855072,
-			zoom: 11
+			zoom: 11,
+
+			markerLocations: []
 		}
 
 	}
@@ -49,6 +53,10 @@ export default class Main extends Component {
 		this.setState({ latitude, longitude })
 	}
 
+	setMarkerLocations(markerLocations) {
+		this.setState({ markerLocations }, () => console.log(this.state.markerLocations))
+	}
+
 	render() {
 		return(
 			<div>
@@ -60,9 +68,11 @@ export default class Main extends Component {
 					latitude={this.state.latitude} 
 					long={this.state.longitude}
 					changeLocation={this.changeLocation}
+					setMarkerLocations={this.setMarkerLocations}
 				/>
 				<ReactMapGL
 					mapboxApiAccessToken={'pk.eyJ1IjoiamVyZW1pYWhob3dkZW4iLCJhIjoiY2sxdG02dHA3MDg0ajNicWZzcDlscGhjdyJ9.j2t6Mr4EpeTpm-4Uz7kszg'}
+					mapStyle='mapbox://styles/mapbox/dark-v10'
 
 					width={this.state.width}
 					height={this.state.height}
@@ -75,7 +85,15 @@ export default class Main extends Component {
 							width, height, latitude, longitude, zoom
 						})
 					}}
-				/>
+				>
+					{this.state.markerLocations.map(marker => {
+						return(
+							<Marker>
+
+							</Marker>
+						)
+					})}
+				</ReactMapGL>
 			</div>
 		)
 	}
