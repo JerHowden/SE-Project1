@@ -23,13 +23,14 @@ export class Search extends Component {
 
 			let request = {
 				query: this.state.search,
-				fields: ['formatted_address', 'geometry', 'icon', 'name', 'permanently_closed', 'photos', 'place_id', 'plus_code', 'types']
+				fields: ['formatted_address', 'geometry', 'icon', 'name', 'permanently_closed', 'photos', 'place_id', 'plus_code', 'types'],
+				locationBias: { lat: this.props.latitude, lng: this.props.longitude }
 			}
-			let service = this.props.google.maps.places.PlacesService(document.createElement('div'))
-			console.log('service:', service)
-			service.findPlaceFromQuery(request, function(results, status) {
+			let service = new this.props.google.maps.places.PlacesService(document.createElement('div'))
+			service.findPlaceFromQuery(request, (results, status) => {
 				if (status === this.props.google.maps.places.PlacesServiceStatus.OK) {
 					console.log("Results:", results)
+					this.props.setMarkerLocations(results)
 				}
 			})
 		})

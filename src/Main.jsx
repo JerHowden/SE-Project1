@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapGL, {Marker} from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
 
 import Today from './Dashboard/Today';
 import Location from './Dashboard/Location';
@@ -66,7 +66,7 @@ export default class Main extends Component {
 				<Today/>
 				<Search
 					latitude={this.state.latitude} 
-					long={this.state.longitude}
+					longitude={this.state.longitude}
 					changeLocation={this.changeLocation}
 					setMarkerLocations={this.setMarkerLocations}
 				/>
@@ -88,8 +88,12 @@ export default class Main extends Component {
 				>
 					{this.state.markerLocations.map(marker => {
 						return(
-							<Marker>
-
+							<Marker
+								key={marker.place_id}
+								latitude={marker.geometry.location.lat()}
+								longitude={marker.geometry.location.lng()}
+							>
+								{marker.name}
 							</Marker>
 						)
 					})}
