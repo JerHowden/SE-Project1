@@ -18,3 +18,8 @@ a[href*="google.com"] {
 	display: none;
     pointer-events: none;
 }
+
+.mapboxgl-marker {
+	cursor: pointer;
+	z-index: 2;
+}

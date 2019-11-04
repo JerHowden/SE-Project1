@@ -61,8 +61,11 @@ export default class Main extends Component {
 		return(
 			<div>
 				{/* <  Location/>
-				<Weather/>
 				<Settings/>*/}
+				<Weather
+					latitude={this.state.latitude} 
+					longitude={this.state.longitude}
+				/>
 				<Today/>
 				<Search
 					latitude={this.state.latitude} 
@@ -92,7 +95,16 @@ export default class Main extends Component {
 								key={marker.place_id}
 								latitude={marker.geometry.location.lat()}
 								longitude={marker.geometry.location.lng()}
+								offsetLeft={-25}
+								offsetTop={-50}
 							>
+								<img 
+									src="https://img.icons8.com/plasticine/100/000000/map-pin.png" 
+									alt="X"
+									width="50"
+									height="50"
+									style={{backgroundColor: 'white'}}
+								/>
 								{marker.name}
 							</Marker>
 						)
