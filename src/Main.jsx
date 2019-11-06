@@ -14,6 +14,7 @@ export class Main extends Component {
 
 		this.initMap = this.initMap.bind(this)
 		this.changeLocation = this.changeLocation.bind(this)
+		this.findLocation = this.findLocation.bind(this)
 
 		this.state = {
 			apiKey: 'AIzaSyBbtQVWV6W90rXN8wIHpj0FjF1uqD0ov00',
@@ -50,6 +51,11 @@ export class Main extends Component {
 		this.setState({ pos: { lat, lng }})
 	}
 
+	findLocation(mapProps, map) {
+		console.log("MapProps:", mapProps)
+		console.log("Map:", map)
+	}
+
 	render() {
 		return(
 			<div>
@@ -66,10 +72,12 @@ export class Main extends Component {
 				<Map
 					id="map"
 					google={this.props.google} 
-					zoom={14}
+					clickableIcons={true}
 					onClick={this.onMapClicked}
 					initialCenter={this.state.pos}
 					center={this.state.pos}
+					onDragend={this.findLocation}
+					onZoomChanged={this.findLocation}
 				>
 					<Marker 
 						onClick={this.onMarkerClick}
