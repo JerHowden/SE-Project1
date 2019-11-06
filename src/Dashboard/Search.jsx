@@ -63,9 +63,11 @@ export class Search extends Component {
           this.setState({
             pos:{
               lat: this.state.locationData[0].geometry.location.lat, //set state of new lat and long from the json
-              long: this.state.locationData[0].geometry.location.lng  //combine search and main to set the same locale in the same component? 
+              lng: this.state.locationData[0].geometry.location.lng  //combine search and main to set the same locale in the same component? 
             }
           })
+
+          this.props.changeLocation(this.state.pos.lat, this.state.pos.lng);
         }
 
         // Clear out the old markers.

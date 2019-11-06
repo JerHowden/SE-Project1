@@ -13,6 +13,7 @@ export class Main extends Component {
 		super(props)
 
 		this.initMap = this.initMap.bind(this)
+		this.changeLocation = this.changeLocation.bind(this)
 
 		this.state = {
 			apiKey: 'AIzaSyBbtQVWV6W90rXN8wIHpj0FjF1uqD0ov00',
@@ -47,6 +48,7 @@ export class Main extends Component {
 
 	changeLocation(lat, lng) {
 		this.setState({ position: { lat, lng }})
+		console.log(lat + ' ' + lng)
 	}
 
 	render() {
