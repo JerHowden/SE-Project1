@@ -47,8 +47,7 @@ export class Main extends Component {
 	}
 
 	changeLocation(lat, lng) {
-		this.setState({ position: { lat, lng }})
-		console.log(lat + ' ' + lng)
+		this.setState({ pos: { lat, lng }})
 	}
 
 	render() {
@@ -64,14 +63,16 @@ export class Main extends Component {
 					apiKey={this.state.apiKey}
 					changeLocation={this.changeLocation}
 				/>
-				<Map 
+				<Map
+					id="map"
 					google={this.props.google} 
 					zoom={14}
 					onClick={this.onMapClicked}
 					initialCenter={this.state.pos}
 					center={this.state.pos}
 				>
-					<Marker onClick={this.onMarkerClick}
+					<Marker 
+						onClick={this.onMarkerClick}
 						name={'Your Current location'}
 						position={this.state.pos}
 					/>
