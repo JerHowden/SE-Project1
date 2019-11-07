@@ -6,7 +6,10 @@ export default class Weather extends Component {
         super(props)
 
         this.state = {
-
+            pos:{
+                lat: this.props.lattitude,
+                long: this.props.longitude
+            }
         }
     }
 
