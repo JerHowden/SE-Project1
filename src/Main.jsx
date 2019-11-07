@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 import Today from './Dashboard/Today';
-import Location from './Dashboard/Location';
 import Search from './Dashboard/Search';
 import Weather from './Dashboard/Weather';
-import Settings from './Dashboard/Settings';
+
+import './Main.css'
 
 export class Main extends Component {
 
@@ -59,25 +59,22 @@ export class Main extends Component {
 	render() {
 		return(
 			<div>
-				{/* <  Location/>
-				<Weather/>
-				<Settings/>*/}
-				<Today/>
-				<Search
-					lat={this.state.pos[0]} 
-					lng={this.state.pos[1]}
-					apiKey={this.state.apiKey}
-					changeLocation={this.changeLocation}
-				/>
+				<div id="TopContainer">
+					<Today/>
+					<Search
+						lat={this.state.pos[0]} 
+						lng={this.state.pos[1]}
+						apiKey={this.state.apiKey}
+						changeLocation={this.changeLocation}
+					/>
 
-				<Weather
-					lat = {this.state.pos.lat}
-					lng = {this.state.pos.lng}
-				/>
-
+					<Weather
+						lat = {this.state.pos.lat}
+						lng = {this.state.pos.lng}
+					/>
+				</div>
 				<Map
 					id="map"
-
 					google={this.props.google} 
 					clickableIcons={true}
 					onClick={this.onMapClicked}
@@ -102,7 +99,6 @@ export class Main extends Component {
 			</div>
 		)
 	}
-
 }
 
 export default GoogleApiWrapper({

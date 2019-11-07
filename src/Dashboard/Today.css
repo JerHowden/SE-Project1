@@ -1,13 +1,10 @@
 .DateContainer {
     position: absolute;
-    right: 0px;
-    bottom: 0px;
+    top: 7px;
+    left: 10px;
     z-index: 1;
-    text-align: right;
     color: #FFF;
-    text-shadow: 1px 1px 12px rgba(0,0,0,0.1), 1px -1px 12px rgba(0,0,0,0.1), -1px 1px 12px rgba(0,0,0,0.1), -1px -1px 12px rgba(0,0,0,0.1);
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 2px 10px 6px 10px;
+    /* text-shadow: 1px 1px 12px rgba(0,0,0,0.1), 1px -1px 12px rgba(0,0,0,0.1), -1px 1px 12px rgba(0,0,0,0.1), -1px -1px 12px rgba(0,0,0,0.1); */
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
 }

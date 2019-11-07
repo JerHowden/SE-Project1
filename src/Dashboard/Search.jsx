@@ -118,17 +118,7 @@ export class Search extends Component {
 				id='pac-input' 
 				className='controls' 
 				type='text' 
-				placeholder='Find a Location' 
-				style={{
-					position: 'absolute',
-					left: 0,
-					right: 0,
-					margin: '0 auto',
-					top: '30px',
-					zIndex: 1000,
-					width: '50%',
-					height: 40
-				}}
+				placeholder='Find a Location'
 			/>
             <div id='map'/>	
         </div>
