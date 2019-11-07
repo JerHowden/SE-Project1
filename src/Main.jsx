@@ -69,8 +69,12 @@ export class Main extends Component {
 					apiKey={this.state.apiKey}
 					changeLocation={this.changeLocation}
 				/>
+
+				<Weather/>
+
 				<Map
 					id="map"
+
 					google={this.props.google} 
 					clickableIcons={true}
 					onClick={this.onMapClicked}

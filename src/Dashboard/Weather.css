@@ -1,0 +1,16 @@
+.WeatherContainer {
+    position: absolute;
+    right: 20px;
+    bottom: 60px;
+    z-index: 1;
+    text-align: right;
+    color: #FFF;
+    text-shadow: 1px 1px 12px rgba(0,0,0,0.5), 1px -1px 12px rgba(0,0,0,0.5), -1px 1px 12px rgba(0,0,0,0.5), -1px -1px 12px rgba(0,0,0,0.5);
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+}
+
+#Temperature {
+    font-size: 40px;
+    letter-spacing: 1px;
+}
