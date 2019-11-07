@@ -13,6 +13,8 @@ export class Main extends Component {
 		super(props)
 
 		this.initMap = this.initMap.bind(this)
+		this.changeLocation = this.changeLocation.bind(this)
+		this.findLocation = this.findLocation.bind(this)
 
 		this.state = {
 			apiKey: 'AIzaSyBbtQVWV6W90rXN8wIHpj0FjF1uqD0ov00',
@@ -46,7 +48,12 @@ export class Main extends Component {
 	}
 
 	changeLocation(lat, lng) {
-		this.setState({ position: { lat, lng }})
+		this.setState({ pos: { lat, lng }})
+	}
+
+	findLocation(mapProps, map) {
+		console.log("MapProps:", mapProps)
+		console.log("Map:", map)
 	}
 
 	render() {
@@ -62,15 +69,22 @@ export class Main extends Component {
 					apiKey={this.state.apiKey}
 					changeLocation={this.changeLocation}
 				/>
+
 				<Weather/>
-				<Map 
+
+				<Map
+					id="map"
+
 					google={this.props.google} 
-					zoom={14}
+					clickableIcons={true}
 					onClick={this.onMapClicked}
 					initialCenter={this.state.pos}
 					center={this.state.pos}
+					onDragend={this.findLocation}
+					onZoomChanged={this.findLocation}
 				>
-					<Marker onClick={this.onMarkerClick}
+					<Marker 
+						onClick={this.onMarkerClick}
 						name={'Your Current location'}
 						position={this.state.pos}
 					/>

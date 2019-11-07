@@ -16,11 +16,11 @@ export default class Today extends Component {
 
         return (
             <div className="DateContainer">
-                <div id="DayOfWeek">
-                    {this.state.date.format("dddd")}
-                </div>
                 <div id="Date">
                     {this.state.date.format("MMMM Do")}
+                </div>
+                <div id="DayOfWeek">
+                    {this.state.date.format("dddd")}
                 </div>
 			</div>
         )

@@ -15,6 +15,8 @@ export class Search extends Component {
         lng: this.props.lng
       },
 
+      locationData: []
+
     }
   }
 
@@ -52,6 +54,21 @@ export class Search extends Component {
         if (places.length === 0) {
           return;
         }
+        else{
+          this.setState({locationData: JSON.parse(JSON.stringify(places))})
+
+          console.log('Location: ' + JSON.stringify(this.state.locationData[0].formatted_address))
+          console.log('Coords: ' + JSON.stringify(this.state.locationData[0].geometry.location)) 
+          
+          this.setState({
+            pos:{
+              lat: this.state.locationData[0].geometry.location.lat, //set state of new lat and long from the json
+              lng: this.state.locationData[0].geometry.location.lng  //combine search and main to set the same locale in the same component? 
+            }
+          })
+
+          this.props.changeLocation(this.state.pos.lat, this.state.pos.lng);
+        }
 
         // Clear out the old markers.
         markers.forEach(marker => {
@@ -60,7 +77,7 @@ export class Search extends Component {
         markers = [];
 
         // For each place, get the icon, name and location.
-        var bounds = new this.props.google.maps.LatLngBounds(); //Fuck this line
+        var bounds = new this.props.google.maps.LatLngBounds(); 
         places.forEach(place => {
           if (!place.geometry) {
             console.log("Returned place contains no geometry");
