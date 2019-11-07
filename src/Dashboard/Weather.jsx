@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './Weather.css';
 
 // api_key = b770ccb72e369016d44a8b100dec380d
 export default class Weather extends Component {
@@ -11,6 +11,8 @@ export default class Weather extends Component {
         const data = await response.json()
         this.setState({weather:{temperature:data.main.temp}})
         console.log(data.main.temp)
+        
+        console.log(this.state.pos)
     }
     componentDidMount(){
         this.getWeather()
@@ -21,8 +23,8 @@ export default class Weather extends Component {
 
         this.state = {
             pos:{
-                lat: this.props.lattitude,
-                lon: this.props.longitude
+                lat: this.props.lat,
+                lng: this.props.lng
             },
             weather:{
                 temperature: null //just make this the one for Lubbock
@@ -33,8 +35,8 @@ export default class Weather extends Component {
     render() {
         return (
             <div className = ".WeatherContainer">
-            <div id = "#Temperature"> 
-            {this.state.weather.temperature}
+                <div id = "Temperature"> 
+                    {this.state.weather.temperature}
             </div>
             </div>
         )

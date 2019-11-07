@@ -70,7 +70,10 @@ export class Main extends Component {
 					changeLocation={this.changeLocation}
 				/>
 
-				<Weather/>
+				<Weather
+					lat = {this.state.pos.lat}
+					lng = {this.state.pos.lng}
+				/>
 
 				<Map
 					id="map"
