@@ -21,7 +21,13 @@ export default class Weather extends Component {
 
     componentWillReceiveProps(nextProps){
         if(nextProps !== this.props) {
-            axios.get('http://api.openweathermap.org/data/2.5/weather?lat=' + nextProps.lat + '&lon=' + nextProps.lng + '&APPID=b770ccb72e369016d44a8b100dec380d')
+            let url;
+            if (window.location.protocol === 'http:') {
+                url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + nextProps.lat + '&lon=' + nextProps.lng + '&APPID=b770ccb72e369016d44a8b100dec380d'
+            } else {
+                url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + nextProps.lat + '&lon=' + nextProps.lng + '&APPID=b770ccb72e369016d44a8b100dec380d'
+            }
+            axios.get(url)
                 .then(response => {
                     this.setState({weather: response.data})
                 })
