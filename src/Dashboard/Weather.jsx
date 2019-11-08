@@ -23,8 +23,7 @@ export default class Weather extends Component {
         if(nextProps !== this.props) {
             axios.get('http://api.openweathermap.org/data/2.5/weather?lat=' + nextProps.lat + '&lon=' + nextProps.lng + '&APPID=b770ccb72e369016d44a8b100dec380d')
                 .then(response => {
-                    this.setState({weather: response.data}, () => console.log(this.state, this.state.weather.main.temp))
-                    console.log(response)
+                    this.setState({weather: response.data})
                 })
                 .catch(error =>{
                     console.log(error)
@@ -47,6 +46,7 @@ export default class Weather extends Component {
                                 top: -15,
                                 right: 55
                             }}
+                            title={this.state.weather.weather[0].main}
                         />
                         <div id="Temperature">
                             {Math.round(this.kToF(this.state.weather.main.temp))}

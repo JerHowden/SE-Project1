@@ -1,8 +1,51 @@
 #TopContainer {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 70px;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 1;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 70px;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+}
+
+#BottomContainer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 105px;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+	color: white;
+	padding: 0px 20px;
+	box-sizing: border-box;
+}
+
+#BottomContainer > div > h1 {
+	margin: 10px 0px;
+}
+
+.infoIconContainer {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	margin: 0px 5px;
+}
+
+.svg-inline--fa.infoIcon {
+	font-size: 12px;
+	width: 20px;
+	height: 20px;
+	margin: 0px 5px;
+}
+
+#BottomContainer > .column {
+	width: 50%;
+	text-overflow: hidden;
+	float: left;
+}
+
+#BottomContainer > .column:nth-child(2) {
+	margin: 10px 0px;
+	text-align: right;
+	font-family: 'Roboto Mono', monospace;
 }
