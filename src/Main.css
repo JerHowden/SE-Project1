@@ -40,7 +40,7 @@
 
 #BottomContainer > .column {
 	width: 50%;
-	text-overflow: hidden;
+	text-overflow: ellipsis;
 	float: left;
 }
 
@@ -48,4 +48,5 @@
 	margin: 10px 0px;
 	text-align: right;
 	font-family: 'Roboto Mono', monospace;
+	font-size: 18px;
 }
